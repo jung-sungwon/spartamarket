@@ -9,6 +9,6 @@ app_name = "accounts"
 urlpatterns = [
     path("", views.SignupView.as_view(), name="signup"),
     path("login/", views.LoginView.as_view(), name="login"),
-    path("<str:username>/", views.detail),
+    path("<str:username>/", views.Userprofile.as_view(), name="userprofile"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]

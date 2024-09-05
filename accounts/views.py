@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from accounts.serializers import UserSerializer, UserCreateSerializer
 from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import User
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -42,10 +44,21 @@ class LoginView(APIView):
                 status=status.HTTP_200_OK,
             )
         return Response(
-            {"detail": "Invalid credentials"},
+            {"detail": "username 또는 password 가 틀렸습니다."},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
 
-def detail(request):
-    pass
+class Userprofile(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response(
+                {"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
+        serializer = UserCreateSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
