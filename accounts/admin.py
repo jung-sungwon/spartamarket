@@ -7,5 +7,5 @@ from .models import User
 
 @admin.register(User)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'birthday', 'is_staff')
+    list_display = ('username', 'email', 'name', 'nickname', 'birthday', 'is_staff')
     search_fields = ('username', 'email')
