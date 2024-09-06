@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from .models import Product
 from .serializers import (
     ProductSerializer,
     ListProductSerializer,
     ProductDetailSerializer,
 )
-from rest_framework.permissions import IsAuthenticated
 
 
 class ProductListView(ListAPIView):
