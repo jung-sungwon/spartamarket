@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from .models import Product
-from .serializers import ProductSerializer, ListProductSerializer
+from .serializers import (
+    ProductSerializer,
+    ListProductSerializer,
+    ProductDetailSerializer,
+)
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -12,7 +16,7 @@ class ProductListView(ListAPIView):
 
 class ProductDetailView(RetrieveAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductDetailSerializer
     lookup_field = "pk"
 
     def get_object(self):

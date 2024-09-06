@@ -11,8 +11,19 @@ class ProductSerializer(serializers.ModelSerializer):
 class ListProductSerializer(ProductSerializer):
     def to_representation(self, instance):
         ret = super().to_representation(instance)
+        ret["author"] = instance.author.username
         ret.pop("content")
         ret.pop("image")
         ret.pop("create_at")
-        ret.pop("update_at")
+        ret.pop("id")
+
+        return ret
+
+
+class ProductDetailSerializer(ProductSerializer):
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret["author"] = instance.author.username
+        ret.pop("id")
+
         return ret
