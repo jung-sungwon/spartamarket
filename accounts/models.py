@@ -5,9 +5,9 @@ from datetime import date
 
 # Create your models here.
 class User(AbstractUser):
-    name = models.CharField(max_length=100, blank=False, null=False)
-    nickname = models.CharField(max_length=100, blank=False, null=False)
-    birthday = models.DateField(default=date(2000, 1, 1), blank=False, null=False)
+    name = models.CharField(max_length=100, blank=False)
+    nickname = models.CharField(max_length=100, blank=False)
+    birthday = models.DateField(default=date(2000, 1, 1), blank=False)
 
     def __str__(self):
         return self.username

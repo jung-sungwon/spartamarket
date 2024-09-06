@@ -12,12 +12,7 @@ class Product(models.Model):
         upload_to="images/",
         blank=True,
     )
-    author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="products",
-        null=True,
-    )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="products")
 
     def __str__(self):
         return self.name

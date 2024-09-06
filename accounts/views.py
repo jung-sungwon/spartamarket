@@ -24,10 +24,6 @@ class SignupView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
-        serializer = UserCreateSerializer(request.user)
-        return Response(serializer.data)
-
 
 class LoginView(APIView):
     def post(self, request):
