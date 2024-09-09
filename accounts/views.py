@@ -1,12 +1,7 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth.middleware import get_user
-from django.shortcuts import render
-from django.template.context_processors import request
-from django.views import View
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from accounts.serializers import UserSerializer, UserCreateSerializer
+from accounts.serializers import UserCreateSerializer
 from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
