@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from django.contrib.auth.hashers import check_password
+from rest_framework.exceptions import ValidationError
 
 # Create your views here.
 
@@ -34,6 +36,18 @@ class SignupView(APIView):
 
     def delete(self, request):
         user = request.user
+        username = request.data.get("username")
+        password = request.data.get("password")
+        if not username or not password:
+            return Response(
+                {"error": "사용자 이름과 비밀번호를 입력해 주세요."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if username != user.username:
+            raise ValidationError("사용자 이름이 올바르지 않습니다.")
+
+        if not check_password(password, user.password):
+            raise ValidationError("비밀번호가 올바르지 않습니다.")
         user.delete()
         logout(request)
         return Response(
