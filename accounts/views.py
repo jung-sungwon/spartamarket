@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.middleware import get_user
 from django.shortcuts import render
+from django.template.context_processors import request
 from django.views import View
 from rest_framework import status
 from rest_framework.response import Response
@@ -9,12 +10,19 @@ from accounts.serializers import UserSerializer, UserCreateSerializer
 from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # Create your views here.
 
 
 class SignupView(APIView):
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == "POST":
+            self.permission_classes = [AllowAny]
+        elif request.method == "DELETE":
+            self.permission_classes = [IsAuthenticated]
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
         if serializer.is_valid():
@@ -23,6 +31,14 @@ class SignupView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+        logout(request)
+        return Response(
+            {"message": "다음에 다시 만나요"}, status=status.HTTP_204_NO_CONTENT
+        )
 
 
 class LoginView(APIView):
