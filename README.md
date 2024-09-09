@@ -16,7 +16,8 @@
     - 각 유저의 계정 상세페이지로 이동할 수 있습니다. 이곳에서 유저의 대부분의 정보를 확인할수있습니다
 - 로그인
     - 로그인으로 permission과 token을 받아 더 많은 기능을 사용할수있습니다
-
+- 로그아웃
+  - 토큰을 블랙리스트로 보내 접근제한 
 
 ## ERD/Framework
 - ![ERD](static/image/db.png)
@@ -85,19 +86,21 @@
 - 상품등록
 - ![ERD](static/image/delete.png)
 - 상품삭제
-- - ![ERD](static/image/detail.png)
+- ![ERD](static/image/detail.png)
 - 상품 상세조회
-- - ![ERD](static/image/put.png)
+- ![ERD](static/image/put.png)
 - 상품 수정
 - ![ERD](static/image/get.png)
 - 모든 상품조회
-- - ![ERD](static/image/signup.png)
+- ![ERD](static/image/signup.png)
 - 회원가입
-- - ![ERD](static/image/login.png)
+- ![ERD](static/image/login.png)
 - 로그인
-- - ![ERD](static/image/profile.png)
+- ![ERD](static/image/logout.png)
+- 로그아웃
+- ![ERD](static/image/profile.png)
 - 프로필
-- - ![ERD](static/image/refresh.png)
+- ![ERD](static/image/refresh.png)
 - 토큰 리프레쉬
 - ![ERD](static/image/token.png)
 - 토큰 으로 보안 확인
