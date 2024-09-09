@@ -22,7 +22,7 @@
 - ![ERD](db.png)
 - 프로젝트 구조
 ```
-📦 
+📦
 ├─ .gitignore
 ├─ .idea
 │  ├─ .gitignore
@@ -71,8 +71,8 @@
 
 
 ## Troubling/Troubleshooting
-- 본인의 게시글에만 수정 삭제 가능하도록 basepermission를 오버라이딩 하여 권한 부여하였지만 
-지속적으로 로그인된 사용자라면 수정 삭제 가능 확인 
+- 본인의 게시글에만 수정 삭제 가능하도록 basepermission를 오버라이딩 하여 권한 부여하였지만
+지속적으로 로그인된 사용자라면 수정 삭제 가능 확인
     -  문제는 상세페이지에서 get.object 로 404 오류메세지 발생하는 로직을 넣었는데 오버라이딩
 과정에서 모두 모두 사용되다보니 basspermission 에서 오버라이딩 했던 로직이 실행되지 않고있었음
 404 오류 로직은 삭제하고 RetrieveUpdateDestroyAPIView 기본내장 오류 메세지 사용
