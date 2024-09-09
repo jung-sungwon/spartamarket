@@ -1,7 +1,7 @@
 # SPARTAMARKET
 
 ## Project Description
-중고거래 플렛폼을 만드는 과제
+스파르타 마켓을 DRF로 구현
 
 ## App
 ### products
@@ -12,14 +12,14 @@
 ### accounts
 - 회원가입
     - 회원가입을 회원의 정보를 db 저장
-- 계정상세 페이지
-    - 각 유저의 계정상세페이지로 이동할 수 있습니다. 이곳에서 유저의 대부분의 정보를 확인할수있습니다
+- 프로필 조회
+    - 각 유저의 계정 상세페이지로 이동할 수 있습니다. 이곳에서 유저의 대부분의 정보를 확인할수있습니다
 - 로그인
     - 로그인으로 permission과 token을 받아 더 많은 기능을 사용할수있습니다
 
 
 ## ERD/Framework
-- ![ERD](db.png)
+- ![ERD](static/image/db.png)
 - 프로젝트 구조
 ```
 📦
@@ -76,11 +76,36 @@
     -  문제는 상세페이지에서 get.object 로 404 오류메세지 발생하는 로직을 넣었는데 오버라이딩
 과정에서 모두 모두 사용되다보니 basspermission 에서 오버라이딩 했던 로직이 실행되지 않고있었음
 404 오류 로직은 삭제하고 RetrieveUpdateDestroyAPIView 기본내장 오류 메세지 사용
+- readme 작성한게 파이참에서 열리지 않아 수정 및 확인이 어려운점 확인
+    -  파일이 파이참에서 마크다운 형식으로 연결이 되지않아 설정에서 파일프로퍼티에서 직접 파일형식 연결로 해결
 
 
+## 기능 점검
+- ![ERD](static/image/create.png)
+- 상품등록
+- ![ERD](static/image/delete.png)
+- 상품삭제
+- - ![ERD](static/image/detail.png)
+- 상품 상세조회
+- - ![ERD](static/image/put.png)
+- 상품 수정
+- ![ERD](static/image/get.png)
+- 모든 상품조회
+- - ![ERD](static/image/signup.png)
+- 회원가입
+- - ![ERD](static/image/login.png)
+- 로그인
+- - ![ERD](static/image/profile.png)
+- 프로필
+- - ![ERD](static/image/refresh.png)
+- 토큰 리프레쉬
+- ![ERD](static/image/token.png)
+- 토큰 으로 보안 확인
+- ![ERD](static/image/permission.png)
+- 퍼미션으로 권한확인
 
 ## Version
-asgiref==3.8.1
+asgiref==3.8.
 black==24.8.0
 click==8.1.7
 Django==4.2
