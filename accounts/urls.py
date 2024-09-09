@@ -10,6 +10,7 @@ app_name = "accounts"
 
 urlpatterns = [
     path("", views.SignupView.as_view(), name="signup"),
+    path("password/", views.PasswordView.as_view(), name="password"),
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", TokenBlacklistView.as_view(), name="logout"),
     path("<str:username>/", views.Userprofile.as_view(), name="userprofile"),

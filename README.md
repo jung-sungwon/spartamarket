@@ -94,6 +94,8 @@
 - 모든 상품조회
 - ![ERD](static/image/signup.png)
 - 회원가입
+- ![ERD](static/image/password.png)
+- 비밀번호 수정
 - ![ERD](static/image/accountdelete.png)
 - 회원탈퇴
 - ![ERD](static/image/login.png)
