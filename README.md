@@ -102,6 +102,10 @@
 - 로그아웃
 - ![ERD](static/image/profile.png)
 - 프로필
+- ![ERD](static/image/edit.png)
+- 프로필 수정
+- ![ERD](static/image/email.png)
+- 이메일 중복확인
 - ![ERD](static/image/refresh.png)
 - 토큰 리프레쉬
 - ![ERD](static/image/token.png)

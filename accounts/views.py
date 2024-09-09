@@ -88,3 +88,37 @@ class Userprofile(APIView):
 
         serializer = UserCreateSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, username):
+        current_user = request.user
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response(
+                {"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+        if current_user != user:
+            return Response(
+                {"detail": "You do not have permission to edit this profile."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        serializer = UserCreateSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            email = serializer.validated_data.get("email", user.email)
+            username = serializer.validated_data.get("username", user.username)
+
+            if User.objects.exclude(pk=user.pk).filter(email=email).exists():
+                return Response(
+                    {"email": "This email is already in use."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            if User.objects.exclude(pk=user.pk).filter(username=username).exists():
+                return Response(
+                    {"username": "This username is already taken."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
